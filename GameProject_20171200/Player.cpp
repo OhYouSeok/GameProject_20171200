@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "Game.h"
 #include "BulletManager.h"
+#include<windows.h>
+#pragma comment(lib,"winmm.lib")
 
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams)
 {
@@ -36,7 +38,6 @@ void Player::handleInput()
 {
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-		std::cout << "hi";
 		m_velocity.setX(2);
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
@@ -56,7 +57,9 @@ void Player::handleInput()
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {
 		/*m_Bullets.push_back(new Bullet(new LoaderParams(m_position.getX()+50, m_position.getY()+50, 10, 10, "bullet")));*/
-		BulletManager::getInstance()->PushBackBullet(new Bullet(new LoaderParams(m_position.getX()+10, m_position.getY(), 10, 10, "bullet")));
+		PlaySound("SOUND/selection.wav", NULL, SND_ASYNC | SND_NOSTOP);
+		BulletManager::getInstance()->PushBackBullet(new Bullet(new LoaderParams(m_position.getX() + 10, m_position.getY(), 10, 10, "bullet")));
+		SDL_Delay(50);
 	}
 
 }

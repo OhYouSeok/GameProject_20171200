@@ -13,9 +13,7 @@ bool Game::init(std::string title, int xpos, int ypos, int width, int height, bo
 		window = SDL_CreateWindow(title.c_str(), xpos, ypos, width, height, fullscreen);
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		m_bRunning = true;
-
 		SDL_SetRenderDrawColor(renderer, 50, 0, 0, 255);
-
 		if (!TheTextureManager::Instance()->load("assets/PlayerSprite.png", "Player", renderer)) {
 		}
 		if (!TheTextureManager::Instance()->load("assets/1111.png", "bullet", renderer)) {
@@ -70,4 +68,3 @@ void Game::clean() {
 	SDL_DestroyWindow(window);
 	TheInputHandler::Instance()->clean();
 }
-
